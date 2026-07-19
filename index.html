@@ -1,1019 +1,369 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MAAMAKIM — Sovereign Underwater Datacenters</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anne Bonny &amp; Mary Read: Women Pirates in History, Ep. 2 — Halfwords</title>
+<meta name="description" content="Two women stepped straight out of legend and into the Golden Age of Piracy. The true story of Anne Bonny and Mary Read.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:oklch(0.97 0.005 80);
-  --paper-2:oklch(0.94 0.008 80);
-  --ink:oklch(0.18 0.02 240);
-  --ink-2:oklch(0.32 0.02 240);
-  --ink-3:oklch(0.55 0.015 240);
-  --rule:oklch(0.85 0.01 240);
-  --rule-strong:oklch(0.72 0.015 240);
-  --signal:oklch(0.72 0.14 55);
-  --signal-deep:oklch(0.55 0.14 50);
-  --abyss:oklch(0.14 0.03 240);
-  --ok:oklch(0.62 0.10 160);
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Archivo',sans-serif;font-feature-settings:"ss01","cv11";-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-ligatures:none}
-.serif{font-family:'Instrument Serif',serif;font-weight:400}
-.hairline{border-top:1px solid var(--rule)}
-.container{max-width:1440px;margin:0 auto;padding:0 40px}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-weight:500;font-size:14px;letter-spacing:.01em;cursor:pointer;transition:transform .12s ease, background .12s ease}
-.btn:hover{transform:translateY(-1px)}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:var(--paper)}
-.btn.signal{background:var(--signal);border-color:var(--signal);color:var(--abyss)}
-.btn .arr{width:14px;height:1px;background:currentColor;position:relative}
-.btn .arr::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
-::selection{background:var(--signal);color:var(--abyss)}
+  :root {
+    --paper: #f0ede3;
+    --paper-dark: #e8e4d6;
+    --ink: #2b2820;
+    --ink-soft: #55503f;
+    --ink-faint: #8a8470;
+    --rule: #c9c4b0;
+    --accent: #8b2e2e;
+    --sea: #3d4f5c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: .35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
-/* placeholder stripe */
-.ph{background-image:repeating-linear-gradient(135deg, oklch(0.88 0.01 240) 0 2px, transparent 2px 10px);border:1px solid var(--rule);position:relative}
-.ph .ph-label{position:absolute;left:10px;bottom:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);background:var(--paper);padding:2px 6px;border:1px solid var(--rule)}
+  .blackletter { font-family: 'UnifrakturMaguntia', cursive; font-weight: 400; }
 
-/* blink */
-@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.2}}
-.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--signal);animation:blink 1.4s infinite;vertical-align:middle}
-.dot.ok{background:var(--ok)}
+  /* ===== Reading progress: a ship sails across the top ===== */
+  #progress-track {
+    position: fixed; top: 0; left: 0; right: 0; height: 4px;
+    background: transparent; z-index: 900;
+  }
+  #progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--sea), var(--accent));
+    transition: width .1s linear;
+  }
+  #progress-ship {
+    position: fixed; top: -4px; left: 0; z-index: 901;
+    transform: translateX(-50%);
+    transition: left .1s linear;
+  }
 
-/* scanning line */
-@keyframes sweep{0%{transform:translateY(-100%)}100%{transform:translateY(2000%)}}
+  /* ===== Masthead ===== */
+  header.masthead {
+    text-align: center;
+    padding: 48px 20px 36px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    position: relative;
+  }
+  .masthead-inner { display: inline-block; padding: 8px 36px; }
+  .masthead-rule { height: 3px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); width: 100%; }
+  .masthead h1 {
+    font-size: clamp(3rem, 8vw, 4.6rem);
+    letter-spacing: .01em;
+    line-height: 1;
+    margin: 10px 0 2px;
+  }
+  .masthead .est {
+    font-family: 'Inter', sans-serif;
+    font-size: .6rem; letter-spacing: .18em;
+    color: var(--ink-soft); text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .masthead h1 a { color: inherit; text-decoration: none; }
 
-/* ============== RESPONSIVE ============== */
-/* Tablet */
-@media (max-width: 1200px){
-  .resp-nav-links{display:none !important}
-  .resp-nav-live{display:none !important}
-  .resp-mobile-menu-btn{display:flex !important}
-}
-@media (max-width: 1024px){
-  .container{padding:0 28px}
-  .resp-hero{grid-template-columns:1fr !important; gap:40px !important; padding-top:40px !important; padding-bottom:48px !important}
-  .resp-hero h1{font-size:72px !important}
-  .resp-hero-stats{grid-template-columns:repeat(2,1fr) !important}
-  .resp-hero-stats > div:nth-child(2){border-right:none !important}
-  .resp-thesis-grid{grid-template-columns:1fr !important; gap:40px !important}
-  .resp-thesis-cols{grid-template-columns:1fr !important}
-  .resp-thesis-cols > div{border-right:none !important; border-bottom:1px solid var(--rule)}
-  .resp-arch-grid{grid-template-columns:1fr !important; gap:40px !important}
-  .resp-econ-grid{grid-template-columns:1fr !important; gap:32px !important}
-  .resp-team-grid{grid-template-columns:repeat(2,1fr) !important}
-  .resp-team-grid > div{border-right:1px solid var(--rule) !important}
-  .resp-team-grid > div:nth-child(2n){border-right:none !important}
-  .resp-round-grid{grid-template-columns:1fr !important; gap:40px !important}
-  .resp-round-grid h2{font-size:56px !important}
-  .resp-backers{grid-template-columns:repeat(3,1fr) !important}
-  .resp-backers > div{border-right:1px solid var(--rule) !important}
-  .resp-backers > div:nth-child(3n){border-right:none !important}
-  .resp-backers > div:nth-child(n+4){border-top:1px solid var(--rule)}
-  .resp-footer{grid-template-columns:repeat(2,1fr) !important; gap:32px !important}
-  .resp-timeline{grid-template-columns:64px 48px 1fr !important}
-  .resp-timeline-status{grid-column:3/4; text-align:left !important; margin-top:6px}
-  .resp-threat{grid-template-columns:1fr 44px 100px !important; row-gap:6px}
-  .resp-threat-counter{grid-column:1/-1 !important; order:3}
-  .resp-section{padding:64px 28px !important}
-}
+  /* ===== Article layout ===== */
+  main { max-width: 720px; margin: 0 auto; padding: 56px 24px 0; position: relative; z-index: 2; }
 
-/* Mobile */
-@media (max-width: 640px){
-  .container{padding:0 20px}
-  html,body{font-size:14.5px}
-  .resp-nav-cta{display:none !important}
-  .resp-wordmark-sub{display:none}
-  .resp-hero{padding-top:32px !important; padding-bottom:40px !important}
-  .resp-hero h1{font-size:52px !important; line-height:.96 !important}
-  .resp-hero p{font-size:16px !important}
-  .resp-hero-btns{flex-direction:column; align-items:stretch}
-  .resp-hero-btns a{justify-content:center}
-  .resp-hero-stats{grid-template-columns:1fr 1fr !important; margin-top:36px !important}
-  .resp-hero-stats > div{padding:14px 12px 14px 0 !important}
-  .resp-hero-stats > div div:first-child{font-size:22px !important}
-  .resp-telemetry{min-height:0 !important}
-  .resp-section{padding:56px 20px !important}
-  .resp-section-title{font-size:36px !important}
-  .resp-section-num{grid-template-columns:1fr !important; gap:10px !important}
-  .resp-section-num > div:first-child{display:none}
-  .resp-thesis-big{font-size:18px !important}
-  .resp-arch-title{font-size:36px !important}
-  .resp-arch-tabs button{font-size:10px !important; padding:10px 4px !important; letter-spacing:.04em !important}
-  .resp-threat-head{display:none !important}
-  .resp-threat{grid-template-columns:1fr !important; padding:14px 16px !important; row-gap:6px}
-  .resp-threat > *{grid-column:1/-1 !important}
-  .resp-threat-vector{font-size:15px !important; font-weight:600}
-  .resp-threat-counter{font-size:13px !important; color:var(--ink-3) !important}
-  .resp-threat-sev{display:inline-flex; align-items:center; gap:8px}
-  .resp-team-grid{grid-template-columns:1fr !important}
-  .resp-team-grid > div{border-right:none !important; padding-right:0 !important}
-  .resp-round-grid h2{font-size:44px !important}
-  .resp-round-tbl{font-size:13px !important}
-  .resp-round-tbl > div{grid-template-columns:1fr !important; gap:2px !important; padding:12px 16px !important}
-  .resp-quote{font-size:22px !important; padding-top:28px !important; margin-top:56px !important}
-  .resp-backers{grid-template-columns:repeat(2,1fr) !important}
-  .resp-backers > div{border-right:1px solid var(--rule) !important}
-  .resp-backers > div:nth-child(2n){border-right:none !important}
-  .resp-backers > div:nth-child(n+3){border-top:1px solid var(--rule)}
-  .resp-backers > div:nth-child(n+5){border-top:1px solid var(--rule)}
-  .resp-footer{grid-template-columns:1fr !important}
-  .resp-footer-bar{flex-direction:column; gap:6px; text-align:center}
-  .resp-ticker{font-size:10px !important}
-  .resp-timeline{grid-template-columns:56px 40px 1fr !important; padding:16px 0 !important}
-  .resp-timeline-year{font-size:17px !important}
-  .resp-timeline-desc{font-size:14px !important}
-  .resp-section-head-h2{font-size:32px !important}
-  .resp-tweaks{width:calc(100vw - 24px) !important; right:12px !important; bottom:12px !important}
-  .btn{padding:14px 18px; font-size:14px}
-  input[type="range"]{width:100% !important}
-}
+  .kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: .78rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 18px;
+  }
+  h2.headline {
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    line-height: 1.15;
+    margin-bottom: 28px;
+  }
+  .byline { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .byline .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #6d6250, #33302a);
+    display: grid; place-items: center;
+    color: var(--paper); font-family: 'Inter', sans-serif; font-weight: 600; font-size: .85rem;
+    border: 1px solid var(--rule);
+  }
+  .byline .meta { font-family: 'Inter', sans-serif; }
+  .byline .name { font-size: .78rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  .byline .date { font-size: .72rem; letter-spacing: .1em; color: var(--ink-faint); text-transform: uppercase; margin-top: 2px; }
 
-.resp-mobile-menu-btn{display:none}
-.resp-mobile-drawer{position:fixed;top:72px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--ink);z-index:39;padding:16px 20px;display:grid;gap:2px;transform:translateY(-110%);transition:transform .25s ease,visibility 0s linear .25s;visibility:hidden}
-.resp-mobile-drawer.open{transform:translateY(0);visibility:visible;transition:transform .25s ease,visibility 0s linear 0s}
-.resp-mobile-drawer.open{transform:translateY(0)}
-.resp-mobile-drawer a{display:block;padding:14px 4px;border-bottom:1px solid var(--rule);font-size:16px}
-.resp-mobile-drawer a:last-child{border-bottom:none}
+  .engagement {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif; font-size: .85rem; color: var(--ink-soft);
+    padding-bottom: 30px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 1px solid var(--rule); border-radius: 999px;
+    padding: 7px 16px; background: transparent; cursor: pointer;
+    font: inherit; color: inherit;
+    transition: background .2s, transform .15s;
+  }
+  .pill:hover { background: var(--paper-dark); transform: translateY(-1px); }
+  .pill.liked { color: var(--accent); border-color: var(--accent); }
+  .pill.share { margin-left: auto; }
+
+  /* ===== Hero image ===== */
+  figure.hero { margin: 6px 0 40px; }
+  .hero-frame {
+    border: 1px solid var(--rule);
+    padding: 10px;
+    background: #fbfaf4;
+    box-shadow: 0 1px 0 var(--rule);
+  }
+  .hero img { width: 100%; display: block; filter: sepia(.12) contrast(1.02); }
+  figcaption {
+    text-align: center; font-size: .85rem; color: var(--ink-faint);
+    margin-top: 14px; line-height: 1.5;
+  }
+  figcaption em { font-style: italic; }
+
+  /* ===== Body copy ===== */
+  article p { font-size: 1.14rem; margin-bottom: 1.5em; color: var(--ink); }
+  article p:first-of-type::first-letter {
+    font-size: 4.6em; float: left; line-height: .82;
+    padding: .04em .12em 0 0;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  article h3 {
+    font-size: 1.55rem; margin: 2.2em 0 .8em;
+    font-family: 'UnifrakturMaguntia', cursive; font-weight: 400;
+    letter-spacing: .01em;
+  }
+  blockquote {
+    margin: 2.2em 0; padding: .4em 0 .4em 1.4em;
+    border-left: 3px solid var(--accent);
+    font-style: italic; font-size: 1.28rem; line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  /* ornamental divider */
+  .divider {
+    text-align: center; margin: 3em 0;
+    color: var(--ink-faint); font-size: 1.2rem; letter-spacing: 1.2em;
+    padding-left: 1.2em;
+  }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ===== Ocean footer with sailing ship ===== */
+  .ocean {
+    position: relative; margin-top: 80px; height: 260px; overflow: hidden;
+  }
+  .ship {
+    position: absolute; bottom: 96px; left: -140px;
+    width: 120px; z-index: 1;
+    animation: sail 38s linear infinite;
+  }
+  @keyframes sail {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(100vw + 280px)); }
+  }
+  .ship-bob { animation: bob 3.4s ease-in-out infinite; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50% { transform: translateY(-9px) rotate(1.5deg); }
+  }
+  .flag-wave { transform-origin: left center; animation: flagwave 1.6s ease-in-out infinite; }
+  @keyframes flagwave {
+    0%, 100% { transform: skewY(0deg); }
+    50% { transform: skewY(-7deg); }
+  }
+  .waves { position: absolute; left: 0; right: 0; bottom: 0; height: 130px; }
+  .wave-layer {
+    position: absolute; bottom: 0; left: 0;
+    width: 200%; height: 100%;
+    background-repeat: repeat-x; background-position: bottom; background-size: 50% 100%;
+  }
+  .wave-back  { opacity: .35; animation: drift 22s linear infinite; }
+  .wave-mid   { opacity: .6;  animation: drift 14s linear infinite reverse; bottom: -14px; }
+  .wave-front { opacity: .95; animation: drift 9s  linear infinite; bottom: -30px; }
+  @keyframes drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  footer.colophon {
+    background: var(--sea); color: #dfe6ea;
+    text-align: center; padding: 34px 20px 44px;
+    font-family: 'Inter', sans-serif; font-size: .8rem; letter-spacing: .08em;
+    position: relative;
+  }
+  footer .blackletter { font-size: 1.7rem; display: block; margin-bottom: 8px; color: #f0ede3; }
+  footer .jr { opacity: .65; margin-top: 6px; display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ship, .ship-bob, .flag-wave, .wave-layer { animation: none !important; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 </head>
 <body>
-<div id="root"></div>
+
+<div id="progress-track"><div id="progress-bar"></div></div>
+<div id="progress-ship" aria-hidden="true">
+  <svg width="30" height="26" viewBox="0 0 30 26" fill="none">
+    <path d="M4 18 L26 18 L22 24 L8 24 Z" fill="#2b2820"/>
+    <rect x="14" y="4" width="1.6" height="14" fill="#2b2820"/>
+    <path d="M15.6 5 L24 12 L15.6 12 Z" fill="#8b2e2e"/>
+    <path d="M14 6 L7 12 L14 12 Z" fill="#55503f"/>
+  </svg>
+</div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-rule"></div>
+    <h1 class="blackletter"><a href="#">Halfwords</a></h1>
+    <div class="est">Est. 2026</div>
+    <div class="masthead-rule"></div>
+  </div>
+</header>
+
+<main>
+  <div class="kicker">History</div>
+  <h2 class="headline blackletter">Anne Bonny &amp; Mary Read: Women Pirates in History, Ep. 2</h2>
+
+  <div class="byline">
+    <div class="avatar">MV</div>
+    <div class="meta">
+      <div class="name">Michelle Vidal</div>
+      <div class="date">Mar 11, 2026</div>
+    </div>
+  </div>
+
+  <div class="engagement">
+    <button class="pill" id="like-btn" aria-label="Like">♡ <span id="like-count">16</span></button>
+    <button class="pill" aria-label="Comments">💬 6</button>
+    <button class="pill" aria-label="Reposts">↻ 4</button>
+    <button class="pill share" id="share-btn">Share</button>
+  </div>
+
+  <figure class="hero reveal visible">
+    <div class="hero-frame">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Bonny%2C_Anne_%281697-1720%29.png"
+           alt="Early engraving of Anne Bonny and Mary Read from A General History of Pyrates (1724)"
+           onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22420%22%3E%3Crect width=%22720%22 height=%22420%22 fill=%22%23e8e4d6%22/%3E%3Ctext x=%22360%22 y=%22215%22 font-family=%22Georgia%22 font-size=%2220%22 fill=%22%238a8470%22 text-anchor=%22middle%22%3EAnne Bonny %26amp; Mary Read, 1724 engraving%3C/text%3E%3C/svg%3E'">
+    </div>
+    <figcaption>Anne Bonny and Mary Read, depicted together in an early illustration<br>from <em>A General History of Pyrates</em> (1724). Public domain.</figcaption>
+  </figure>
+
+  <article>
+    <p class="reveal">Pirate history is full of larger-than-life figures—Blackbeard, Sir Francis Drake, Henry Morgan—men whose names have become inseparable from the Golden Age of Piracy. Their reputations loom so large that they often dominate the entire story. But if you look past the usual suspects, two women appear in the historical record who seem to have stepped straight out of a legend: Anne Bonny and Mary Read.</p>
+
+    <p class="reveal">Both sailed under Captain "Calico Jack" Rackham in the waters around Jamaica and the Bahamas in 1720. Both fought in men's clothing. And both, remarkably, were real—their trial records still survive in the colonial archives of Jamaica.</p>
+
+    <h3 class="reveal">Two Roads to the Same Deck</h3>
+
+    <p class="reveal">Anne Bonny was born in Ireland around the turn of the eighteenth century, the daughter of a lawyer who eventually relocated the family to the Carolinas. Headstrong from the start, she married a small-time sailor, drifted to Nassau—then the beating heart of Caribbean piracy—and fell in with Rackham, abandoning respectable life for the deck of a stolen sloop.</p>
+
+    <p class="reveal">Mary Read's road was stranger still. Raised in England as a boy so her mother could collect an inheritance, she spent years living as "Mark Read"—serving as a soldier in Flanders before shipboard life carried her to the West Indies. When pirates seized the vessel she was traveling on, Read joined them. It was aboard Rackham's ship that she and Bonny discovered each other's secret.</p>
+
+    <blockquote class="reveal">When the moment came to fight, witnesses at their trial agreed, no one aboard fought harder than the two women.</blockquote>
+
+    <h3 class="reveal">The Last Stand off Negril Point</h3>
+
+    <p class="reveal">In October 1720, a privateer commissioned by the governor of Jamaica cornered Rackham's sloop off the western tip of the island. Most of the crew—by many accounts, deep in their cups—retreated below deck. Bonny and Read stayed topside, pistols and cutlasses drawn, reportedly cursing the men below for their cowardice.</p>
+
+    <p class="reveal">The battle was lost anyway. The crew was hauled to Spanish Town, tried, and sentenced to hang. Rackham was executed in November 1720; legend holds that Bonny's parting words to him were withering—that had he fought like a man, he need not have died like a dog.</p>
+
+    <h3 class="reveal">Pleading the Belly</h3>
+
+    <p class="reveal">Bonny and Read escaped the gallows through one of the era's few legal mercies available to women: both were found to be pregnant, and the court stayed their executions. Mary Read died in prison in April 1721, likely of fever. Anne Bonny's fate is one of piracy's enduring mysteries—the record simply goes quiet. Some historians believe her father bought her freedom and that she lived out a long, quiet life in South Carolina. No one knows for certain.</p>
+
+    <p class="reveal">That uncertainty is part of why the two women endure. Blackbeard's story ends with his head hanging from a bowsprit. Anne Bonny's ends with a blank page—an invitation, three centuries wide, for the legend to keep growing.</p>
+
+    <div class="divider reveal">⚓ ⚓ ⚓</div>
+
+    <p class="reveal"><em>Next in the series: Ching Shih, the widow who commanded a fleet the Royal Navy wouldn't touch.</em></p>
+  </article>
+</main>
+
+<div class="ocean" aria-hidden="true">
+  <div class="ship">
+    <div class="ship-bob">
+      <svg viewBox="0 0 120 110" width="120" height="110" fill="none">
+        <rect x="58" y="8" width="3" height="70" fill="#2b2820"/>
+        <g class="flag-wave">
+          <path d="M61 10 L86 16 L61 22 Z" fill="#2b2820"/>
+          <circle cx="70" cy="16" r="2.4" fill="#f0ede3"/>
+        </g>
+        <path d="M61 24 L96 52 L61 52 Z" fill="#e8e4d6" stroke="#55503f" stroke-width="1.5"/>
+        <path d="M58 28 L30 52 L58 52 Z" fill="#dcd6c2" stroke="#55503f" stroke-width="1.5"/>
+        <path d="M18 78 L102 78 L88 98 L32 98 Z" fill="#3a332a"/>
+        <path d="M18 78 L102 78" stroke="#8b2e2e" stroke-width="3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="waves">
+    <div class="wave-layer wave-back"  style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C150,110 350,10 600,60 C850,110 1050,10 1200,60 L1200,120 L0,120 Z' fill='%236b8494'/%3E%3C/svg%3E&quot;)"></div>
+    <div class="wave-layer wave-mid"   style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C200,20 400,120 600,70 C800,20 1000,120 1200,70 L1200,120 L0,120 Z' fill='%234d6270'/%3E%3C/svg%3E&quot;)"></div>
+    <div class="wave-layer wave-front" style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,55 C180,105 380,5 600,55 C820,105 1020,5 1200,55 L1200,120 L0,120 Z' fill='%233d4f5c'/%3E%3C/svg%3E&quot;)"></div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <span class="blackletter">Halfwords</span>
+  Stories half-remembered, fully told.
+  <span class="jr">© 2026 Halfwords · Women Pirates in History, Episode 2</span>
+</footer>
 
 <script>
-const TWEAK_DEFAULS = /*EDITMODE-BEGIN*/{
-  "accent": "#e08a3c",
-  "codename": "MAAMAKIM",
-  "raise": "$100M",
-  "round": "Series A",
-  "heroVariant": "map",
-  "density": "dense"
-}/*EDITMODE-END*/;
-</script>
+  // Reading progress ship
+  const bar = document.getElementById('progress-bar');
+  const ship = document.getElementById('progress-ship');
+  function updateProgress() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+    ship.style.left = pct + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
 
-<script type="text/babel" data-presets="react">
-const {useState, useEffect, useRef, useMemo} = React;
+  // Scroll-reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ============== NAV ============== */
-function Nav({state, setState}){
-  const [open,setOpen]=useState(false);
-  const links=['Thesis','Architecture','Threat Model','Economics','Team','Round'];
-  return (
-    <header style={{position:'sticky',top:0,zIndex:40,background:'var(--paper)',borderBottom:'1px solid var(--rule)'}}>
-      <div className="container" style={{display:'flex',alignItems:'center',justifyContent:'space-between',minHeight:72,gap:12,flexWrap:'nowrap',paddingTop:14,paddingBottom:14}}>
-        <div style={{display:'flex',alignItems:'center',gap:14,minWidth:0}}>
-          <Wordmark/>
-          <span className="mono resp-nav-live resp-nav-classif" style={{fontSize:11,color:'var(--ink-3)',borderLeft:'1px solid var(--rule)',paddingLeft:14,whiteSpace:'nowrap'}}>CLASSIFICATION · PROJECT BRIEF / INVESTOR</span>
-        </div>
-        <nav className="resp-nav-links" style={{display:'flex',gap:28,fontSize:13.5}}>
-          {links.map(l=>(
-            <a key={l} href={'#'+l.toLowerCase().replace(/ /g,'-')} style={{color:'var(--ink-2)'}}>{l}</a>
-          ))}
-        </nav>
-        <div style={{display:'flex',gap:10,alignItems:'center'}}>
-          <span className="mono resp-nav-live" style={{fontSize:11,color:'var(--ink-3)'}}><span className="dot"/> LIVE · HAIFA TRENCH TEST POD</span>
-          <a className="btn resp-nav-cta" href="#round">Request dataroom <span className="arr"/></a>
-          <button className="resp-mobile-menu-btn" onClick={()=>setOpen(!open)} aria-label="Menu" style={{width:40,height:40,border:'1px solid var(--ink)',background:'var(--paper)',cursor:'pointer',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:4,padding:0}}>
-            <span style={{width:16,height:1,background:'var(--ink)',transform:open?'translateY(2.5px) rotate(45deg)':'none',transition:'transform .2s'}}/>
-            <span style={{width:16,height:1,background:'var(--ink)',transform:open?'translateY(-2.5px) rotate(-45deg)':'none',transition:'transform .2s'}}/>
-          </button>
-        </div>
-      </div>
-      <div className={'resp-mobile-drawer '+(open?'open':'')}>
-        {links.map(l=>(
-          <a key={l} href={'#'+l.toLowerCase().replace(/ /g,'-')} onClick={()=>setOpen(false)}>{l}</a>
-        ))}
-        <a href="#round" onClick={()=>setOpen(false)} style={{color:'var(--signal-deep)',fontWeight:600}}>Request dataroom →</a>
-      </div>
-    </header>
-  );
-}
-function Wordmark(){
-  return (
-    <div style={{display:'flex',alignItems:'center',gap:10,flexShrink:0}}>
-      <svg width="26" height="26" viewBox="0 0 26 26" style={{flexShrink:0}}>
-        <rect x="0.5" y="0.5" width="25" height="25" fill="none" stroke="currentColor"/>
-        <line x1="0" y1="13" x2="26" y2="13" stroke="currentColor" strokeWidth="1"/>
-        <line x1="13" y1="0" x2="13" y2="26" stroke="currentColor" strokeDasharray="2 2"/>
-        <circle cx="13" cy="19" r="2.2" fill="var(--signal)"/>
-      </svg>
-      <div style={{display:'flex',flexDirection:'column',justifyContent:'center',lineHeight:1.1}}>
-        <div style={{fontWeight:700,letterSpacing:'.04em',fontSize:14}}>MAAMAKIM</div>
-        <div className="mono resp-wordmark-sub" style={{fontSize:9.5,color:'var(--ink-3)',marginTop:2,lineHeight:1}}>מעמקים · THE DEEPS</div>
-      </div>
-    </div>
-  );
-}
+  // Like button
+  const likeBtn = document.getElementById('like-btn');
+  const likeCount = document.getElementById('like-count');
+  let liked = false;
+  likeBtn.addEventListener('click', () => {
+    liked = !liked;
+    likeBtn.classList.toggle('liked', liked);
+    likeBtn.firstChild.textContent = liked ? '♥ ' : '♡ ';
+    likeCount.textContent = liked ? 17 : 16;
+  });
 
-/* ============== HERO ============== */
-function Hero(){
-  const [coords, setCoords] = useState({lat:32.8192, lng:34.9402, depth:612});
-  useEffect(()=>{
-    const id=setInterval(()=>{
-      setCoords(c=>({
-        lat:+(c.lat + (Math.random()-0.5)*0.0002).toFixed(4),
-        lng:+(c.lng + (Math.random()-0.5)*0.0002).toFixed(4),
-        depth: Math.round(608 + Math.random()*8)
-      }));
-    },1200);
-    return ()=>clearInterval(id);
-  },[]);
-  return (
-    <section style={{position:'relative',borderBottom:'1px solid var(--rule)',overflow:'hidden'}}>
-      <div className="container resp-hero" style={{paddingTop:56,paddingBottom:64,display:'grid',gridTemplateColumns:'1.1fr 1fr',gap:56,alignItems:'end'}}>
-        <div>
-          <div className="eyebrow" style={{display:'flex',gap:14,alignItems:'center',flexWrap:'wrap'}}>
-            <span>FILE · MAAMAKIM-01</span>
-            <span style={{width:20,height:1,background:'var(--rule-strong)'}}/>
-            <span>REV 04.2026</span>
-            <span style={{width:20,height:1,background:'var(--rule-strong)'}}/>
-            <span>FOR · ISRAELI VC & SOVEREIGN LPs</span>
-          </div>
-          <h1 style={{fontSize:96,lineHeight:.94,letterSpacing:'-0.03em',margin:'28px 0 0',fontWeight:600}}>
-            Compute<br/>
-            <span className="serif" style={{fontStyle:'italic',fontWeight:400}}>below</span> the<br/>
-            surface.
-          </h1>
-          <p style={{fontSize:19,lineHeight:1.45,color:'var(--ink-2)',maxWidth:560,marginTop:28}}>
-            Maamakim is building sovereign, seabed-anchored datacenter pods off the Israeli coast —
-            nation-only AI and robotic compute, hardened by 600&nbsp;meters of Mediterranean water and
-            cooled for free. Capex-efficient. Electromagnetically quiet. Kinetically defensible.
-          </p>
-          <div className="resp-hero-btns" style={{display:'flex',gap:12,marginTop:34,flexWrap:'wrap'}}>
-            <a className="btn signal" href="#round">Open the round · $100M Series A <span className="arr"/></a>
-            <a className="btn ghost" href="#architecture">Read the thesis</a>
-          </div>
-          <div className="resp-hero-stats" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:0,marginTop:56,borderTop:'1px solid var(--rule)'}}>
-            {[
-              ['42 MW','per-pod IT load, submerged'],
-              ['1.03','design PUE · free seawater loop'],
-              ['0','freshwater · zero land footprint'],
-              ['<4 ms','to Tel Aviv core · dark fibre'],
-            ].map(([k,v])=>(
-              <div key={k} style={{padding:'18px 18px 18px 0',borderRight:'1px solid var(--rule)'}}>
-                <div style={{fontSize:30,letterSpacing:'-0.02em',fontWeight:600}}>{k}</div>
-                <div className="mono" style={{fontSize:11,color:'var(--ink-3)',marginTop:6}}>{v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* right: live telemetry card */}
-        <div className="resp-telemetry" style={{border:'1px solid var(--rule)',background:'var(--paper-2)',padding:0,position:'relative',minHeight:560}}>
-          <div style={{display:'flex',justifyContent:'space-between',borderBottom:'1px solid var(--rule)',padding:'12px 16px'}}>
-            <span className="mono" style={{fontSize:11}}>POD 01 · HAIFA-A · TEST ARTICLE</span>
-            <span className="mono" style={{fontSize:11,color:'var(--ink-3)'}}><span className="dot ok"/> NOMINAL</span>
-          </div>
-          <BathymetryMap coords={coords}/>
-          <div style={{borderTop:'1px solid var(--rule)',display:'grid',gridTemplateColumns:'repeat(3,1fr)'}}>
-            {[
-              ['LAT', coords.lat.toFixed(4)+'° N'],
-              ['LNG', coords.lng.toFixed(4)+'° E'],
-              ['DEPTH', coords.depth+' m'],
-            ].map(([k,v])=>(
-              <div key={k} style={{padding:'12px 14px',borderRight:'1px solid var(--rule)'}}>
-                <div className="mono" style={{fontSize:10,color:'var(--ink-3)'}}>{k}</div>
-                <div className="mono" style={{fontSize:14,marginTop:2}}>{v}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{borderTop:'1px solid var(--rule)',padding:'12px 16px',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
-            {[['SEAFLOOR T°','13.4'],['INLET T°','14.1'],['IT ΔT','8.7'],['SALINITY','38.9']].map(([k,v])=>(
-              <div key={k}>
-                <div className="mono" style={{fontSize:10,color:'var(--ink-3)'}}>{k}</div>
-                <div className="mono" style={{fontSize:13}}>{v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BathymetryMap({coords}){
-  // stylised contour map of Haifa shelf
-  return (
-    <div style={{position:'relative',height:360,overflow:'hidden'}}>
-      <svg viewBox="0 0 600 360" style={{width:'100%',height:'100%',display:'block'}}>
-        <defs>
-          <pattern id="hair" width="6" height="6" patternUnits="userSpaceOnUse">
-            <path d="M0 6 L6 0" stroke="oklch(0.85 0.01 240)" strokeWidth="0.5"/>
-          </pattern>
-        </defs>
-        <rect width="600" height="360" fill="var(--paper)"/>
-        {/* coastline */}
-        <path d="M0 0 L0 360 L120 360 Q150 300 160 260 Q170 200 200 170 Q230 140 240 90 Q245 40 280 0 Z" fill="url(#hair)" stroke="var(--ink)" strokeWidth="1"/>
-        {/* contour lines */}
-        {[...Array(9)].map((_,i)=>(
-          <path key={i}
-            d={`M${300+i*14} 360 Q ${320+i*14} ${260-i*8} ${360+i*20} ${180-i*6} T ${520+i*10} ${40-i*4}`}
-            fill="none" stroke="var(--rule-strong)" strokeWidth="0.6" strokeDasharray={i%3?'':'2 3'}/>
-        ))}
-        {/* dark fibre */}
-        <path d="M0 120 Q 150 140 260 170 L 410 230" stroke="var(--ink)" strokeWidth="1.2" strokeDasharray="4 3" fill="none"/>
-        <text x="10" y="114" className="mono" fontFamily="JetBrains Mono" fontSize="9" fill="var(--ink-3)">DARK FIBRE · HAIFA LANDING</text>
-        {/* pod */}
-        <g transform="translate(410,230)">
-          <circle r="22" fill="none" stroke="var(--signal)" strokeWidth="0.8" opacity=".4"/>
-          <circle r="40" fill="none" stroke="var(--signal)" strokeWidth="0.6" opacity=".2"/>
-          <rect x="-7" y="-7" width="14" height="14" fill="var(--signal)"/>
-          <line x1="7" y1="-7" x2="30" y2="-30" stroke="var(--ink)" strokeWidth="0.6"/>
-          <text x="32" y="-32" className="mono" fontFamily="JetBrains Mono" fontSize="9" fill="var(--ink)">POD-01 · 42 MW</text>
-        </g>
-        {/* other pods */}
-        <g transform="translate(490,170)" opacity=".5">
-          <rect x="-5" y="-5" width="10" height="10" fill="none" stroke="var(--ink)"/>
-          <text x="10" y="4" fontFamily="JetBrains Mono" fontSize="8" fill="var(--ink-3)">POD-02 · PLANNED</text>
-        </g>
-        <g transform="translate(360,290)" opacity=".5">
-          <rect x="-5" y="-5" width="10" height="10" fill="none" stroke="var(--ink)"/>
-          <text x="10" y="4" fontFamily="JetBrains Mono" fontSize="8" fill="var(--ink-3)">POD-03 · PLANNED</text>
-        </g>
-        {/* depth labels */}
-        <text x="340" y="355" fontFamily="JetBrains Mono" fontSize="8" fill="var(--ink-3)">-200m</text>
-        <text x="430" y="355" fontFamily="JetBrains Mono" fontSize="8" fill="var(--ink-3)">-600m</text>
-        <text x="530" y="355" fontFamily="JetBrains Mono" fontSize="8" fill="var(--ink-3)">-1200m</text>
-        {/* crosshair */}
-        <g stroke="var(--ink)" strokeWidth="0.5">
-          <line x1="410" y1="0" x2="410" y2="360" strokeDasharray="1 4" opacity=".4"/>
-          <line x1="0" y1="230" x2="600" y2="230" strokeDasharray="1 4" opacity=".4"/>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-/* ============== TICKER ============== */
-function Ticker(){
-  const items=[
-    'EU AI ACT · EXTRATERRITORIAL SCOPE EXPANDING',
-    'HYPERSCALER OUTAGE · US-EAST-1 · 47 MIN',
-    'MOSSAD RFI · SOVEREIGN LLM INFRASTRUCTURE',
-    'ISRAELI AI WORKLOAD GROWTH · 74% YOY',
-    'MEDITERRANEAN CABLE LANDING · HAIFA CAPACITY +2x',
-    'NVIDIA EXPORT CONTROL · TIER-2 TIGHTENING',
-  ];
-  return (
-    <div style={{background:'var(--abyss)',color:'var(--paper)',overflow:'hidden',borderBottom:'1px solid var(--ink)'}}>
-      <div style={{display:'flex',gap:48,padding:'10px 0',whiteSpace:'nowrap',animation:'tkr 60s linear infinite'}} className="mono">
-        {[...items,...items,...items].map((t,i)=>(
-          <span key={i} style={{fontSize:11,letterSpacing:'.12em'}}>
-            <span style={{color:'var(--signal)'}}>●</span>&nbsp;&nbsp;{t}
-          </span>
-        ))}
-      </div>
-      <style>{`@keyframes tkr{from{transform:translateX(0)}to{transform:translateX(-33.33%)}}`}</style>
-    </div>
-  );
-}
-
-/* ============== THESIS ============== */
-function Thesis(){
-  return (
-    <section id="thesis" style={{borderBottom:'1px solid var(--rule)'}}>
-      <div className="container resp-section" style={{padding:'88px 40px'}}>
-        <SectionHead num="01" kicker="Strategic thesis" title="Sovereign compute is a physical problem."/>
-        <div className="resp-thesis-grid" style={{display:'grid',gridTemplateColumns:'1.3fr 1fr',gap:80,marginTop:48}}>
-          <div className="resp-thesis-big" style={{fontSize:22,lineHeight:1.4,letterSpacing:'-0.005em',maxWidth:720}}>
-            Israel runs its most sensitive AI workloads on foreign soil, on foreign silicon, inside
-            foreign hyperscalers. Export regimes tighten yearly. Grid capacity on the coastal plain
-            is already rationed. Freshwater for cooling is not a conversation we get to have.
-            <span className="serif" style={{fontStyle:'italic',color:'var(--ink-2)'}}>&nbsp; The next tier of compute cannot live on land here.</span>
-          </div>
-          <div style={{borderLeft:'1px solid var(--rule)',paddingLeft:28}}>
-            <div className="eyebrow">What we believe</div>
-            <ul style={{listStyle:'none',padding:0,margin:'14px 0 0',display:'grid',gap:14}}>
-              {[
-                ['A1','Sovereignty is a hardware category, not a policy one.'],
-                ['A2','Seawater is the only abundant coolant Israel owns.'],
-                ['A3','A seabed pod is harder to coerce than a land contract.'],
-                ['A4','Robotic and autonomous workloads don\'t need humans in the room.'],
-              ].map(([k,v])=>(
-                <li key={k} style={{display:'grid',gridTemplateColumns:'36px 1fr',gap:12,fontSize:15,lineHeight:1.4}}>
-                  <span className="mono" style={{color:'var(--signal-deep)'}}>{k}</span><span>{v}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* 3-up comparison */}
-        <div className="resp-thesis-cols" style={{marginTop:64,borderTop:'1px solid var(--ink)',display:'grid',gridTemplateColumns:'repeat(3,1fr)'}}>
-          {[
-            {t:'LAND · HYPERSCALE',s:'Dependent',rows:[['Sovereignty','Foreign tenancy'],['Cooling','Freshwater · scarce'],['Power','Grid-bound · permitted'],['Kinetic risk','Above-surface · targeted'],['Permitting','3–7 yrs']]},
-            {t:'LAND · ISRAELI MOD',s:'Constrained',rows:[['Sovereignty','National'],['Cooling','Chilled · costly'],['Power','Base load · capped'],['Kinetic risk','Known coordinates'],['Permitting','Classified · slow']]},
-            {t:'MAAMAKIM · SEABED',s:'Proposed',rows:[['Sovereignty','National · EEZ-anchored'],['Cooling','Seawater loop · free'],['Power','HVDC shore + wave top-up'],['Kinetic risk','600 m of water'],['Permitting','Maritime · 18 mo']]},
-          ].map((col,i)=>(
-            <div key={i} style={{padding:'24px 24px 28px',borderRight: i<2?'1px solid var(--rule)':'none', background: i===2?'var(--abyss)':'transparent', color: i===2?'var(--paper)':'inherit'}}>
-              <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline'}}>
-                <div className="mono" style={{fontSize:11,letterSpacing:'.1em'}}>{col.t}</div>
-                <div className="mono" style={{fontSize:10,color: i===2?'var(--signal)':'var(--ink-3)'}}>{col.s.toUpperCase()}</div>
-              </div>
-              <div style={{marginTop:18,display:'grid',gap:10}}>
-                {col.rows.map(([k,v])=>(
-                  <div key={k} style={{display:'grid',gridTemplateColumns:'120px 1fr',gap:12,fontSize:13,borderTop:'1px solid '+(i===2?'oklch(0.28 0.03 240)':'var(--rule)'),paddingTop:10}}>
-                    <span className="mono" style={{fontSize:11,color: i===2?'oklch(0.65 0.02 240)':'var(--ink-3)'}}>{k.toUpperCase()}</span>
-                    <span>{v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SectionHead({num,kicker,title}){
-  return (
-    <div className="resp-section-num" style={{display:'grid',gridTemplateColumns:'80px 1fr',gap:28,alignItems:'baseline'}}>
-      <div className="mono" style={{fontSize:12,color:'var(--ink-3)'}}>§ {num}</div>
-      <div>
-        <div className="eyebrow">{kicker}</div>
-        <h2 className="resp-section-title resp-section-head-h2" style={{fontSize:56,letterSpacing:'-0.02em',lineHeight:1.02,margin:'12px 0 0',fontWeight:600,maxWidth:900}}>{title}</h2>
-      </div>
-    </div>
-  );
-}
-
-/* ============== ARCHITECTURE ============== */
-function Architecture(){
-  const [tab, setTab] = useState('pod');
-  const tabs = [
-    ['pod','Pod structure'],
-    ['power','Power & thermal'],
-    ['net','Network & latency'],
-    ['ops','Robotic operations'],
-  ];
-  return (
-    <section id="architecture" style={{background:'var(--abyss)',color:'var(--paper)',borderBottom:'1px solid var(--ink)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <div className="resp-section-num" style={{display:'grid',gridTemplateColumns:'80px 1fr',gap:28}}>
-          <div className="mono" style={{fontSize:12,color:'oklch(0.65 0.02 240)'}}>§ 02</div>
-          <div>
-            <div className="eyebrow" style={{color:'oklch(0.70 0.02 240)'}}>Architecture</div>
-            <h2 className="resp-arch-title" style={{fontSize:56,letterSpacing:'-0.02em',lineHeight:1.02,margin:'12px 0 0',fontWeight:600,maxWidth:1000}}>
-              A 42&nbsp;MW pod, dropped once, opened <span className="serif" style={{fontStyle:'italic'}}>never.</span>
-            </h2>
-          </div>
-        </div>
-
-        <div className="resp-arch-grid" style={{marginTop:48,display:'grid',gridTemplateColumns:'1.2fr 1fr',gap:56}}>
-          <div>
-            <PodDiagram/>
-          </div>
-          <div>
-            <div className="resp-arch-tabs" style={{display:'flex',gap:0,borderBottom:'1px solid oklch(0.28 0.03 240)'}}>
-              {tabs.map(([id,lbl])=>(
-                <button key={id} onClick={()=>setTab(id)} style={{
-                  flex:1,padding:'12px 10px',background:'transparent',color: tab===id?'var(--signal)':'oklch(0.75 0.02 240)',
-                  border:'none',borderBottom:'2px solid '+(tab===id?'var(--signal)':'transparent'),
-                  fontFamily:'JetBrains Mono',fontSize:11,letterSpacing:'.1em',textTransform:'uppercase',cursor:'pointer'}}>
-                  {lbl}
-                </button>
-              ))}
-            </div>
-            <div style={{paddingTop:22,minHeight:420}}>
-              {tab==='pod' && <ArchPanel rows={[
-                ['Hull','Titanium-clad, 12 m × 38 m, inert N₂ atmosphere'],
-                ['Deployment','Single lift, surface-assembled, sinks in 6 hrs'],
-                ['Rack count','1,240 GPU-class racks · 680 CPU racks'],
-                ['Service model','Zero-touch. Recovered as a unit every 7 yrs.'],
-                ['Sensors','38 external acoustic, 12 pressure, 6 tamper'],
-              ]}/>}
-              {tab==='power' && <ArchPanel rows={[
-                ['Shore link','±320 kV HVDC · redundant cable pair · 2 landings'],
-                ['Cooling loop','Closed primary → titanium plate → open seawater'],
-                ['Design PUE','1.03 (steady-state, Mediterranean summer)'],
-                ['Freshwater','Zero · none required, none permitted'],
-                ['Backup','72-hr onboard battery + surface wave top-up'],
-              ]}/>}
-              {tab==='net' && <ArchPanel rows={[
-                ['Landing','Haifa · Palmachim · Ashdod (three-way diverse)'],
-                ['To TLV core','<4 ms · dark fibre, owned right-of-way'],
-                ['To Nicosia','<9 ms · for EU replication'],
-                ['Optical','1.6T per lambda · 400 lambdas · >640 Tbps'],
-                ['Air-gap tier','Separate optical plane for classified workloads'],
-              ]}/>}
-              {tab==='ops' && <ArchPanel rows={[
-                ['Humans aboard','Zero · ever.'],
-                ['Interior robot','6-axis rail ROV · hot-swap at rack level'],
-                ['External ROV','Tethered inspection class · 2 per pod'],
-                ['Software','MAAMAKIM OS · immutable image, attested boot'],
-                ['Downtime budget','17 min / pod / yr · 99.9968%'],
-              ]}/>}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-function ArchPanel({rows}){
-  return (
-    <div style={{display:'grid',gap:0}}>
-      {rows.map(([k,v],i)=>(
-        <div key={k} style={{display:'grid',gridTemplateColumns:'160px 1fr',gap:16,padding:'14px 0',borderBottom:'1px solid oklch(0.24 0.03 240)'}}>
-          <div className="mono" style={{fontSize:11,letterSpacing:'.08em',color:'oklch(0.70 0.02 240)'}}>{k.toUpperCase()}</div>
-          <div style={{fontSize:15,lineHeight:1.4}}>{v}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function PodDiagram(){
-  return (
-    <div style={{border:'1px solid oklch(0.28 0.03 240)',padding:20,position:'relative'}}>
-      <div style={{display:'flex',justifyContent:'space-between',marginBottom:12}}>
-        <span className="mono" style={{fontSize:10,color:'oklch(0.70 0.02 240)'}}>FIG. 02.1 · POD LONGITUDINAL · SCALE 1:240</span>
-        <span className="mono" style={{fontSize:10,color:'oklch(0.70 0.02 240)'}}>DWG · MMK-A-0041</span>
-      </div>
-      <svg viewBox="0 0 640 420" style={{width:'100%',display:'block'}}>
-        {/* water surface */}
-        <line x1="0" y1="30" x2="640" y2="30" stroke="oklch(0.55 0.04 240)" strokeWidth="0.6"/>
-        <text x="6" y="22" fontFamily="JetBrains Mono" fontSize="9" fill="oklch(0.70 0.02 240)">SEA LEVEL · 0 m</text>
-        {/* depth markers */}
-        {[100,200,400,600].map((d,i)=>(
-          <g key={d}>
-            <line x1="0" y1={60+i*60} x2="640" y2={60+i*60} stroke="oklch(0.24 0.03 240)" strokeDasharray="2 4"/>
-            <text x="6" y={56+i*60} fontFamily="JetBrains Mono" fontSize="9" fill="oklch(0.60 0.02 240)">-{d} m</text>
-          </g>
-        ))}
-        {/* cable from surface */}
-        <path d="M540 30 Q 520 180 440 310" stroke="var(--signal)" strokeWidth="1.2" fill="none" strokeDasharray="3 2"/>
-        <text x="548" y="90" fontFamily="JetBrains Mono" fontSize="9" fill="var(--signal)">HVDC + FIBRE</text>
-        {/* seabed */}
-        <path d="M0 380 Q 120 360 260 370 T 520 370 T 640 380 L 640 420 L 0 420 Z" fill="oklch(0.10 0.02 240)"/>
-        <text x="6" y="395" fontFamily="JetBrains Mono" fontSize="9" fill="oklch(0.60 0.02 240)">SEABED · -612 m</text>
-        {/* pod */}
-        <g transform="translate(180,290)">
-          <rect x="0" y="0" width="280" height="50" fill="oklch(0.22 0.02 240)" stroke="var(--paper)" strokeWidth="0.8"/>
-          {/* racks */}
-          {[...Array(24)].map((_,i)=>(<rect key={i} x={8+i*11} y="8" width="8" height="34" fill="oklch(0.32 0.02 240)"/>))}
-          {/* end caps */}
-          <path d="M0 0 Q -24 25 0 50 Z" fill="oklch(0.28 0.02 240)" stroke="var(--paper)" strokeWidth="0.8"/>
-          <path d="M280 0 Q 304 25 280 50 Z" fill="oklch(0.28 0.02 240)" stroke="var(--paper)" strokeWidth="0.8"/>
-          {/* anchors */}
-          <line x1="20" y1="50" x2="40" y2="90" stroke="var(--paper)" strokeWidth="0.6"/>
-          <line x1="260" y1="50" x2="240" y2="90" stroke="var(--paper)" strokeWidth="0.6"/>
-          <rect x="32" y="88" width="16" height="4" fill="var(--paper)"/>
-          <rect x="232" y="88" width="16" height="4" fill="var(--paper)"/>
-          {/* annotations */}
-          <line x1="140" y1="0" x2="140" y2="-40" stroke="var(--signal)" strokeWidth="0.6"/>
-          <text x="144" y="-32" fontFamily="JetBrains Mono" fontSize="9" fill="var(--signal)">HULL · Ti-6Al-4V</text>
-          <line x1="280" y1="25" x2="360" y2="25" stroke="var(--paper)" strokeWidth="0.4"/>
-          <text x="364" y="22" fontFamily="JetBrains Mono" fontSize="9" fill="var(--paper)">38 m</text>
-          <line x1="0" y1="60" x2="0" y2="90" stroke="var(--paper)" strokeWidth="0.4"/>
-          <text x="-40" y="78" fontFamily="JetBrains Mono" fontSize="9" fill="var(--paper)">12 m</text>
-        </g>
-        {/* heat plume */}
-        <path d="M320 290 Q 310 240 340 180" stroke="var(--signal)" opacity=".3" strokeWidth="1" fill="none"/>
-        <path d="M380 290 Q 390 240 370 190" stroke="var(--signal)" opacity=".3" strokeWidth="1" fill="none"/>
-        <text x="340" y="170" fontFamily="JetBrains Mono" fontSize="8" fill="oklch(0.70 0.02 240)">ΔT +8.7°C · DISSIPATES &lt;40m</text>
-      </svg>
-    </div>
-  );
-}
-
-/* ============== THREAT MODEL ============== */
-function ThreatModel(){
-  const rows=[
-    ['Kinetic · surface missile','H','Hull depth 600 m · no direct line-of-effect','Mitigated'],
-    ['Kinetic · submarine torpedo','M','Passive acoustic net + distributed pod array','Reduced'],
-    ['Cable cut · trawl / sabotage','H','Triple-landing, mesh topology, 48-hr self-healing','Mitigated'],
-    ['Supply-chain compromise','H','Attested boot, HSM per rack, Israeli-fab key material','Mitigated'],
-    ['Insider / human access','M','Zero humans aboard post-seal. Period.','Eliminated'],
-    ['Grid coercion','M','Dual-feed HVDC + wave top-up + 72-hr battery','Reduced'],
-    ['Legal · foreign subpoena','H','EEZ jurisdiction · no foreign tenancy','Eliminated'],
-    ['Environmental · storm / current','L','Seabed anchored below wave base','Nominal'],
-  ];
-  const sev={H:'var(--signal)',M:'oklch(0.70 0.10 80)',L:'var(--ok)'};
-  return (
-    <section id="threat-model" style={{borderBottom:'1px solid var(--rule)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <SectionHead num="03" kicker="Threat model" title="What tries to kill a datacenter, and why water answers most of it."/>
-        <div style={{marginTop:48,border:'1px solid var(--ink)'}}>
-          <div className="resp-threat resp-threat-head mono" style={{display:'grid',gridTemplateColumns:'1.4fr 60px 2fr 160px',padding:'12px 18px',background:'var(--abyss)',color:'var(--paper)'}}>
-            <span style={{fontSize:11,letterSpacing:'.1em'}}>VECTOR</span>
-            <span style={{fontSize:11,letterSpacing:'.1em'}}>SEV</span>
-            <span style={{fontSize:11,letterSpacing:'.1em'}}>COUNTERMEASURE</span>
-            <span style={{fontSize:11,letterSpacing:'.1em'}}>STATUS</span>
-          </div>
-          {rows.map((r,i)=>(
-            <div key={i} className="resp-threat" style={{display:'grid',gridTemplateColumns:'1.4fr 60px 2fr 160px',padding:'16px 18px',borderTop:'1px solid var(--rule)',alignItems:'center'}}>
-              <span className="resp-threat-vector" style={{fontSize:15}}>{r[0]}</span>
-              <span className="mono resp-threat-sev" style={{fontSize:12,color:sev[r[1]]}}>● {r[1]}</span>
-              <span className="resp-threat-counter" style={{fontSize:14,color:'var(--ink-2)'}}>{r[2]}</span>
-              <span className="mono" style={{fontSize:11,color:'var(--ink)',borderLeft:'2px solid var(--signal)',paddingLeft:10}}>{r[3].toUpperCase()}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============== ECONOMICS ============== */
-function Economics(){
-  const [pods, setPods] = useState(6);
-  const capexPerPod = 72; // $M
-  const revPerPod = 44; // $M ARR at steady state
-  const capex = pods*capexPerPod;
-  const arr = pods*revPerPod;
-  return (
-    <section id="economics" style={{borderBottom:'1px solid var(--rule)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <SectionHead num="04" kicker="Unit economics" title="Capex-dense. Opex-light. Sovereign-priced."/>
-        <div className="resp-econ-grid" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:56,marginTop:48,alignItems:'start'}}>
-          <div>
-            <div style={{border:'1px solid var(--rule)',padding:24}}>
-              <div className="eyebrow">Model · 7-year pod life</div>
-              <div style={{marginTop:18}}>
-                <label className="mono" style={{fontSize:11,color:'var(--ink-3)'}}>FLEET SIZE · {pods} PODS</label>
-                <input type="range" min="1" max="12" value={pods} onChange={e=>setPods(+e.target.value)} style={{width:'100%',marginTop:8,accentColor:'oklch(0.55 0.14 50)'}}/>
-                <div style={{display:'flex',justifyContent:'space-between'}} className="mono">
-                  <span style={{fontSize:10,color:'var(--ink-3)'}}>1</span>
-                  <span style={{fontSize:10,color:'var(--ink-3)'}}>12 (2031 target)</span>
-                </div>
-              </div>
-              <div style={{marginTop:24,display:'grid',gridTemplateColumns:'1fr 1fr',gap:0,borderTop:'1px solid var(--rule)'}}>
-                <Stat k="Capex" v={'$'+capex+'M'} s={'$72M/pod'}/>
-                <Stat k="Steady-state ARR" v={'$'+arr+'M'} s={'$44M/pod · sovereign pricing'}/>
-                <Stat k="Payback" v={(capexPerPod/revPerPod*12).toFixed(1)+' mo'} s="per pod"/>
-                <Stat k="Gross margin" v="71%" s="target, yr 3+"/>
-              </div>
-            </div>
-            <p className="mono" style={{fontSize:11,color:'var(--ink-3)',marginTop:14,lineHeight:1.5}}>
-              Sovereign pricing assumes a single-tenant framework agreement with the State of Israel
-              for ~60% of capacity, with the balance sold to cleared Israeli enterprises (finance,
-              biotech, autonomous systems). No foreign commercial tenants are contemplated.
-            </p>
-          </div>
-
-          <div>
-            <div style={{border:'1px solid var(--rule)',padding:24}}>
-              <div className="eyebrow">Cost per GPU-hour · indicative</div>
-              <BarChart
-                rows={[
-                  ['Foreign hyperscaler · on-demand', 4.20, '#'],
-                  ['Foreign hyperscaler · 3-yr RI', 2.10, '#'],
-                  ['Land · Israeli self-built', 1.85, '#'],
-                  ['MAAMAKIM · seabed', 0.94, 'signal'],
-                ]}
-              />
-            </div>
-            <div style={{border:'1px solid var(--rule)',padding:24,marginTop:20}}>
-              <div className="eyebrow">Use of proceeds · $100M</div>
-              <UsageBar
-                rows={[
-                  ['Pod-01 hull + deployment', 38, 'var(--abyss)'],
-                  ['Shore station + HVDC', 18, 'oklch(0.38 0.03 240)'],
-                  ['Silicon + racks', 26, 'oklch(0.52 0.04 240)'],
-                  ['R&D · MAAMAKIM OS', 10, 'var(--signal-deep)'],
-                  ['Regulatory + EEZ', 5, 'oklch(0.75 0.02 240)'],
-                  ['Reserve', 3, 'oklch(0.85 0.01 240)'],
-                ]}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-function Stat({k,v,s}){
-  return (
-    <div style={{padding:'18px 0 4px',borderRight:'1px solid var(--rule)'}}>
-      <div className="mono" style={{fontSize:10,color:'var(--ink-3)'}}>{k.toUpperCase()}</div>
-      <div style={{fontSize:32,fontWeight:600,letterSpacing:'-0.02em',marginTop:4}}>{v}</div>
-      <div className="mono" style={{fontSize:10,color:'var(--ink-3)',marginTop:2}}>{s}</div>
-    </div>
-  );
-}
-function BarChart({rows}){
-  const max = Math.max(...rows.map(r=>r[1]));
-  return (
-    <div style={{marginTop:16,display:'grid',gap:14}}>
-      {rows.map(([l,v,kind])=>(
-        <div key={l}>
-          <div style={{display:'flex',justifyContent:'space-between',fontSize:12,marginBottom:6}}>
-            <span>{l}</span>
-            <span className="mono">${v.toFixed(2)}</span>
-          </div>
-          <div style={{height:8,background:'var(--paper-2)',border:'1px solid var(--rule)'}}>
-            <div style={{width:(v/max*100)+'%',height:'100%',background:kind==='signal'?'var(--signal)':'var(--ink)'}}/>
-          </div>
-        </div>
-      ))}
-      <div className="mono" style={{fontSize:10,color:'var(--ink-3)',marginTop:4}}>INDICATIVE USD / H100-EQUIV HOUR · FULLY LOADED</div>
-    </div>
-  );
-}
-function UsageBar({rows}){
-  const total = rows.reduce((a,r)=>a+r[1],0);
-  return (
-    <div style={{marginTop:16}}>
-      <div style={{display:'flex',height:30,border:'1px solid var(--ink)'}}>
-        {rows.map(([l,v,c])=>(
-          <div key={l} style={{flex:v,background:c}} title={l+' '+v+'M'}/>
-        ))}
-      </div>
-      <div style={{marginTop:14,display:'grid',gap:8}}>
-        {rows.map(([l,v,c])=>(
-          <div key={l} style={{display:'grid',gridTemplateColumns:'12px 1fr 50px',gap:10,alignItems:'center',fontSize:13}}>
-            <span style={{width:10,height:10,background:c,display:'inline-block'}}/>
-            <span>{l}</span>
-            <span className="mono" style={{textAlign:'right'}}>${v}M</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ============== TIMELINE ============== */
-function Timeline(){
-  const stages=[
-    ['2024','Q4','Test pod (0.4 MW) · Haifa shelf · 47 days submerged','complete'],
-    ['2025','Q3','Series Seed · $14M · led by sovereign-adjacent LPs','complete'],
-    ['2026','Q2','Series A · $100M · this round','active'],
-    ['2027','Q1','Pod-01 steel cut · Ashdod drydock','planned'],
-    ['2028','Q2','Pod-01 deployed · 42 MW live','planned'],
-    ['2029','Q4','Pod-02, Pod-03 · mesh established','planned'],
-    ['2031','—','12-pod fleet · 504 MW sovereign capacity','planned'],
-  ];
-  return (
-    <section style={{borderBottom:'1px solid var(--rule)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <SectionHead num="05" kicker="Roadmap" title="From test article to a sovereign 500 MW fleet in five years."/>
-        <div style={{marginTop:48,borderTop:'1px solid var(--ink)'}}>
-          {stages.map((s,i)=>(
-            <div key={i} className="resp-timeline" style={{display:'grid',gridTemplateColumns:'80px 60px 1fr 140px',padding:'20px 0',borderBottom:'1px solid var(--rule)',alignItems:'center'}}>
-              <span className="mono resp-timeline-year" style={{fontSize:22,letterSpacing:'-0.01em',fontWeight:500}}>{s[0]}</span>
-              <span className="mono" style={{fontSize:12,color:'var(--ink-3)'}}>{s[1]}</span>
-              <span className="resp-timeline-desc" style={{fontSize:17,letterSpacing:'-0.005em'}}>{s[2]}</span>
-              <span className="mono resp-timeline-status" style={{fontSize:11,letterSpacing:'.1em',textAlign:'right',
-                color: s[3]==='active'?'var(--signal-deep)':(s[3]==='complete'?'var(--ok)':'var(--ink-3)')}}>
-                {s[3]==='complete' && '▲ '}{s[3]==='active' && <span className="dot"/>}{' '}{s[3].toUpperCase()}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============== TEAM ============== */
-function Team(){
-  const people=[
-    ['Eitan Ben-Zvi','Founder, CEO','Former 81 · ex-Mellanox infrastructure','EBZ'],
-    ['Dr. Noa Harel','CTO','PhD subsea robotics, Technion · ex-Rafael','NH'],
-    ['Yosef Amrani','COO · Maritime','30 yrs Israeli Shipyards, DP-2 captain','YA'],
-    ['Lior Cohen','Head of Silicon','Ex-Google TPU · ex-Habana','LC'],
-    ['Maj. Gen. (res.) D.S.','Chair, National Security','Former head, C4I directorate','DS'],
-    ['Shira Weiss','General Counsel','Maritime & export law · ex-MoD','SW'],
-  ];
-  return (
-    <section id="team" style={{borderBottom:'1px solid var(--rule)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <SectionHead num="06" kicker="The people who drop this pod" title="Infrastructure operators, not a pitch-deck team."/>
-        <div className="resp-team-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:0,marginTop:48,borderTop:'1px solid var(--ink)'}}>
-          {people.map((p,i)=>(
-            <div key={i} style={{padding:'28px 28px 28px 0',borderRight:(i%3!==2)?'1px solid var(--rule)':'none',borderBottom:'1px solid var(--rule)',paddingRight:28}}>
-              <div style={{display:'flex',gap:16,alignItems:'center'}}>
-                <div className="ph" style={{width:56,height:56}}>
-                  <div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center'}} className="mono">
-                    {p[3]}
-                  </div>
-                </div>
-                <div>
-                  <div style={{fontSize:16,fontWeight:600}}>{p[0]}</div>
-                  <div className="mono" style={{fontSize:11,color:'var(--ink-3)',marginTop:2}}>{p[1].toUpperCase()}</div>
-                </div>
-              </div>
-              <p style={{fontSize:14,color:'var(--ink-2)',marginTop:16,lineHeight:1.5}}>{p[2]}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mono" style={{fontSize:11,color:'var(--ink-3)',marginTop:24}}>
-          FULL LEADERSHIP, INCLUDING CLASSIFIED-CLEARED ADVISORS, DISCLOSED IN DATAROOM UNDER NDA.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ============== BACKERS ============== */
-function Backers(){
-  const names=['Seed · Sequoia-adjacent','IDF-linked family office','Ashdod Ports Co.','Technion Endowment','Undisclosed (x2)','Strategic · US defence prime'];
-  return (
-    <section style={{borderBottom:'1px solid var(--rule)',background:'var(--paper-2)'}}>
-      <div className="container" style={{padding:'56px 40px'}}>
-        <div className="eyebrow">Seed syndicate · $14M · 2025</div>
-        <div className="resp-backers" style={{display:'grid',gridTemplateColumns:'repeat(6,1fr)',gap:0,marginTop:20,borderTop:'1px solid var(--rule)',borderBottom:'1px solid var(--rule)'}}>
-          {names.map((n,i)=>(
-            <div key={i} style={{padding:'24px 16px',borderRight:(i<5)?'1px solid var(--rule)':'none',textAlign:'center'}}>
-              <div className="mono" style={{fontSize:11,color:'var(--ink-2)'}}>{n.toUpperCase()}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============== ROUND / CTA ============== */
-function Round(){
-  return (
-    <section id="round" style={{background:'var(--abyss)',color:'var(--paper)'}}>
-      <div className="container resp-section" style={{padding:'96px 40px'}}>
-        <div className="resp-round-grid" style={{display:'grid',gridTemplateColumns:'1.1fr 1fr',gap:56,alignItems:'start'}}>
-          <div>
-            <div className="eyebrow" style={{color:'oklch(0.70 0.02 240)'}}>§ 07 · The round</div>
-            <h2 style={{fontSize:72,letterSpacing:'-0.025em',lineHeight:1,margin:'16px 0 0',fontWeight:600}}>
-              $100M <span className="serif" style={{fontStyle:'italic',color:'var(--signal)'}}>Series&nbsp;A.</span>
-            </h2>
-            <p style={{fontSize:19,lineHeight:1.5,marginTop:28,color:'oklch(0.85 0.01 240)',maxWidth:580}}>
-              Raising from Israeli venture and sovereign-adjacent LPs only. Allocation is capped,
-              structured with an anchor tranche of $40M. Dataroom opens on request, under NDA and
-              citizenship verification.
-            </p>
-            <div style={{display:'flex',gap:12,marginTop:36}}>
-              <a className="btn signal">Request dataroom <span className="arr"/></a>
-              <a className="btn ghost" style={{color:'var(--paper)',borderColor:'oklch(0.65 0.02 240)'}}>Download one-pager</a>
-            </div>
-          </div>
-          <div className="resp-round-tbl" style={{border:'1px solid oklch(0.28 0.03 240)'}}>
-            {[
-              ['Round','Series A · priced'],
-              ['Target','$100,000,000'],
-              ['Anchor tranche','$40M · 40% discount to round'],
-              ['Minimum ticket','$2M · qualified investors'],
-              ['Geography','Israeli entities only'],
-              ['Use of proceeds','Pod-01 through commissioning'],
-              ['Close','Q3 2026 · hard-capped'],
-              ['Contact','round@maamakim.il · PGP on request'],
-            ].map(([k,v],i)=>(
-              <div key={k} style={{display:'grid',gridTemplateColumns:'200px 1fr',padding:'16px 20px',borderBottom:i<7?'1px solid oklch(0.24 0.03 240)':'none'}}>
-                <span className="mono" style={{fontSize:11,letterSpacing:'.08em',color:'oklch(0.70 0.02 240)'}}>{k.toUpperCase()}</span>
-                <span style={{fontSize:15}}>{v}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* quote */}
-        <blockquote className="resp-quote" style={{marginTop:96,borderTop:'1px solid oklch(0.28 0.03 240)',paddingTop:40,maxWidth:1000}}>
-          <p className="serif" style={{fontSize:40,lineHeight:1.15,fontStyle:'italic',margin:0,letterSpacing:'-0.01em'}}>
-            “The question stopped being whether Israel can afford a sovereign AI stack.
-            It became whether we can afford the sea floor to put it on.”
-          </p>
-          <div className="mono" style={{fontSize:11,color:'oklch(0.70 0.02 240)',marginTop:18,letterSpacing:'.1em'}}>
-            — INTERNAL MEMO · NATIONAL CYBER DIRECTORATE · CITED WITH PERMISSION
-          </div>
-        </blockquote>
-      </div>
-    </section>
-  );
-}
-
-/* ============== FOOTER ============== */
-function Footer(){
-  return (
-    <footer style={{background:'var(--abyss)',color:'oklch(0.70 0.02 240)',borderTop:'1px solid oklch(0.24 0.03 240)'}}>
-      <div className="container resp-footer" style={{padding:'40px',display:'grid',gridTemplateColumns:'1.4fr 1fr 1fr 1fr',gap:40}}>
-        <div>
-          <Wordmark/>
-          <p style={{fontSize:13,marginTop:16,maxWidth:320,lineHeight:1.5}}>
-            Maamakim Marine Infrastructure Ltd. · Registered in Haifa · 
-            Export-classified under Israeli Defense Export Control.
-          </p>
-        </div>
-        <FooterCol title="Project" items={['Thesis','Architecture','Threat model','Economics']}/>
-        <FooterCol title="Company" items={['Team','Careers · cleared','Press · no','Contact']}/>
-        <FooterCol title="Legal" items={['Export notice','Privacy','NDA template','Security disclosure']}/>
-      </div>
-      <div className="resp-footer-bar mono" style={{borderTop:'1px solid oklch(0.24 0.03 240)',padding:'18px 40px',display:'flex',justifyContent:'space-between'}}>
-        <span style={{fontSize:11}}>© 2026 MAAMAKIM · מעמקים</span>
-        <span style={{fontSize:11}}>CLASSIFICATION · UNCLASSIFIED / INVESTOR · SHA 5f2e…a901</span>
-        <span style={{fontSize:11}}>32.8192° N  ·  34.9402° E  ·  -612 m</span>
-      </div>
-    </footer>
-  );
-}
-function FooterCol({title,items}){
-  return (
-    <div>
-      <div className="mono" style={{fontSize:11,letterSpacing:'.1em',color:'var(--paper)'}}>{title.toUpperCase()}</div>
-      <ul style={{listStyle:'none',padding:0,margin:'14px 0 0',display:'grid',gap:8}}>
-        {items.map(i=><li key={i} style={{fontSize:13}}>{i}</li>)}
-      </ul>
-    </div>
-  );
-}
-
-/* ============== TWEAKS ============== */
-function Tweaks({visible, state, setState}){
-  if(!visible) return null;
-  return (
-    <div className="resp-tweaks" style={{position:'fixed',right:20,bottom:20,width:300,background:'var(--paper)',border:'1px solid var(--ink)',zIndex:100,boxShadow:'0 10px 40px rgba(0,0,0,0.2)'}}>
-      <div style={{padding:'12px 14px',borderBottom:'1px solid var(--rule)',display:'flex',justifyContent:'space-between'}}>
-        <span className="mono" style={{fontSize:11,letterSpacing:'.1em'}}>TWEAKS</span>
-        <span className="mono" style={{fontSize:10,color:'var(--ink-3)'}}>MAAMAKIM · CONSOLE</span>
-      </div>
-      <div style={{padding:14,display:'grid',gap:14}}>
-        <TweakRow label="Accent signal">
-          <input type="color" value={state.accent} onChange={e=>setState({accent:e.target.value})}/>
-        </TweakRow>
-        <TweakRow label="Codename">
-          <input type="text" value={state.codename} onChange={e=>setState({codename:e.target.value})} style={{width:'100%'}}/>
-        </TweakRow>
-        <TweakRow label="Raise size">
-          <select value={state.raise} onChange={e=>setState({raise:e.target.value})}>
-            <option>$60M</option><option>$100M</option><option>$150M</option><option>$250M</option>
-          </select>
-        </TweakRow>
-        <TweakRow label="Density">
-          <select value={state.density} onChange={e=>setState({density:e.target.value})}>
-            <option value="comfortable">Comfortable</option>
-            <option value="dense">Dense · dossier</option>
-          </select>
-        </TweakRow>
-      </div>
-    </div>
-  );
-}
-function TweakRow({label,children}){
-  return (
-    <div style={{display:'grid',gridTemplateColumns:'120px 1fr',gap:10,alignItems:'center'}}>
-      <span className="mono" style={{fontSize:11,color:'var(--ink-3)'}}>{label.toUpperCase()}</span>
-      <div>{children}</div>
-    </div>
-  );
-}
-
-/* ============== APP ============== */
-function App(){
-  const [tweakOpen,setTweakOpen]=useState(false);
-  const [state,setStateRaw]=useState(TWEAK_DEFAULS);
-  const setState = (patch)=>{
-    const next={...state,...patch};
-    setStateRaw(next);
-    try{window.parent.postMessage({type:'__edit_mode_set_keys',edits:patch},'*');}catch(e){}
-  };
-  useEffect(()=>{
-    const onMsg=(e)=>{
-      if(!e.data) return;
-      if(e.data.type==='__activate_edit_mode') setTweakOpen(true);
-      if(e.data.type==='__deactivate_edit_mode') setTweakOpen(false);
-    };
-    window.addEventListener('message',onMsg);
-    try{window.parent.postMessage({type:'__edit_mode_available'},'*');}catch(e){}
-    return ()=>window.removeEventListener('message',onMsg);
-  },[]);
-  // apply accent
-  useEffect(()=>{
-    document.documentElement.style.setProperty('--signal', state.accent);
-  },[state.accent]);
-  // density
-  useEffect(()=>{
-    document.documentElement.style.setProperty('--density', state.density);
-    document.body.style.fontSize = state.density==='dense' ? '14px':'15px';
-  },[state.density]);
-  return (
-    <>
-      <Nav/>
-      <Ticker/>
-      <Hero/>
-      <Thesis/>
-      <Architecture/>
-      <ThreatModel/>
-      <Economics/>
-      <Timeline/>
-      <Team/>
-      <Backers/>
-      <Round/>
-      <Footer/>
-      <Tweaks visible={tweakOpen} state={state} setState={setState}/>
-    </>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  // Share
+  document.getElementById('share-btn').addEventListener('click', async () => {
+    const data = { title: document.title, url: location.href };
+    if (navigator.share) { try { await navigator.share(data); } catch {} }
+    else { try { await navigator.clipboard.writeText(location.href); alert('Link copied to clipboard, matey.'); } catch {} }
+  });
 </script>
 </body>
 </html>
