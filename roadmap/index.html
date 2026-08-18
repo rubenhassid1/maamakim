@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GPC — Get Your Free Personalized AI Roadmap</title>
+<meta name="description" content="Get your free personalized AI roadmap from GPC in under 30 seconds. See exactly how to bring AI into your work, step by step." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple:#6d28d9;
+  --purple-dark:#5b21b6;
+  --purple-soft:#f3eeff;
+  --ink:#17123a;
+  --ink-soft:#4b4763;
+  --line:#e5e1f2;
+  --bg:#ffffff;
+  --ok:#16a34a;
+  --err:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Poppins',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 64px}
+header.top{display:flex;justify-content:center;padding:22px 20px 0}
+.logo{font-weight:800;font-size:22px;letter-spacing:.06em}
+.logo span{color:var(--purple)}
+h1.hero{font-size:clamp(28px,6vw,44px);font-weight:800;line-height:1.15;text-align:center;margin-top:28px}
+h1.hero em{font-style:normal;color:var(--purple)}
+.sub{text-align:center;color:var(--ink-soft);font-size:16px;margin-top:14px}
+
+/* roadmap preview graphic */
+.preview{display:flex;gap:10px;justify-content:center;margin:34px auto 0;max-width:640px}
+.pcard{flex:1;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(23,18,58,.08);min-width:0}
+.pcard.mid{transform:scale(1.08);z-index:2;box-shadow:0 16px 40px rgba(109,40,217,.18)}
+.pcard .phead{background:var(--ink);color:#fff;font-size:10px;font-weight:700;text-align:center;padding:6px 4px;letter-spacing:.08em;text-transform:uppercase}
+.pcard.mid .phead{background:var(--purple)}
+.pcard .prow{display:flex;gap:4px;padding:4px 6px;border-top:1px solid var(--line)}
+.pcard .prow i{display:block;height:5px;border-radius:3px;background:#e9e5f6;flex:1}
+.pcard .prow i.a{background:var(--purple-soft);flex:.5}
+.pcard.mid .prow i.a{background:#dcd0fa}
+
+/* card / steps */
+.card{border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 40px rgba(23,18,58,.08);padding:34px 26px;margin-top:40px;background:#fff}
+.progress{height:6px;border-radius:3px;background:var(--purple-soft);overflow:hidden;margin-bottom:30px}
+.progress i{display:block;height:100%;width:0;background:var(--purple);transition:width .3s ease}
+.step{display:none}
+.step.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.q{font-size:clamp(20px,4.5vw,28px);font-weight:400;text-align:center}
+.q b{font-weight:700}
+.fields{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.fields input,.fields textarea{flex:1;min-width:200px;border:1.5px solid var(--line);border-radius:10px;padding:15px 16px;font-size:15px;font-family:inherit;color:var(--ink);outline:none;transition:border-color .15s}
+.fields input:focus,.fields textarea:focus{border-color:var(--purple)}
+.fields textarea{min-height:120px;resize:vertical;width:100%}
+.opts{display:grid;gap:12px;margin-top:26px}
+.opt{border:1.5px solid var(--line);border-radius:10px;padding:16px 18px;font-size:15px;font-weight:500;text-align:left;background:#fff;cursor:pointer;font-family:inherit;color:var(--ink);transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--purple);background:var(--purple-soft)}
+.btn{display:block;margin:30px auto 0;background:var(--purple);color:#fff;border:none;border-radius:999px;padding:18px 54px;font-size:16px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:background .15s,transform .12s}
+.btn:hover{background:var(--purple-dark);transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+.back{display:block;margin:16px auto 0;background:none;border:none;color:var(--ink-soft);font-size:13px;cursor:pointer;font-family:inherit;text-decoration:underline}
+.errmsg{display:none;color:var(--err);font-size:13.5px;text-align:center;margin-top:14px}
+.errmsg.show{display:block}
+
+.bullets{margin-top:34px;display:grid;gap:10px;justify-items:center}
+.bullets div{font-weight:600;font-size:15px}
+.bullets div::before{content:"✦";color:var(--purple);margin-right:8px}
+.legal{color:var(--ink-soft);font-size:12px;line-height:1.6;text-align:center;margin-top:26px;max-width:640px;margin-left:auto;margin-right:auto}
+
+/* result */
+.result-title{font-size:clamp(24px,5vw,34px);font-weight:800;text-align:center}
+.result-sub{text-align:center;color:var(--ink-soft);margin-top:10px;font-size:15px}
+.stages{display:grid;gap:16px;margin-top:30px}
+.stage{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stage h3{background:var(--ink);color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:12px 16px}
+.stage:nth-child(2) h3{background:var(--purple)}
+.stage ul{list-style:none;padding:14px 16px;display:grid;gap:8px}
+.stage li{font-size:14px;color:var(--ink-soft);padding-left:20px;position:relative;line-height:1.5}
+.stage li::before{content:"→";color:var(--purple);position:absolute;left:0}
+.cta{background:var(--purple-soft);border-radius:14px;padding:28px 22px;text-align:center;margin-top:30px}
+.cta p{font-size:15px;color:var(--ink-soft)}
+.cta .btn{margin-top:18px;text-decoration:none;display:inline-block}
+footer{text-align:center;color:var(--ink-soft);font-size:12.5px;padding:26px 20px 40px}
+@media (max-width:560px){
+  .card{padding:26px 18px}
+  .preview .pcard:not(.mid){display:none}
+  .pcard.mid{transform:none;max-width:240px}
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="logo">GPC<span>.</span></div></header>
+
+<main class="wrap">
+  <h1 class="hero">Get Your Free Personalized <em>AI Roadmap</em>…<br>in under 30 seconds.</h1>
+  <p class="sub">See exactly how to bring AI into your work — step by step, based on what you do.</p>
+
+  <div class="preview" aria-hidden="true">
+    <div class="pcard"><div class="phead">1: Learn</div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div></div>
+    <div class="pcard mid"><div class="phead">2: Integrate</div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div></div>
+    <div class="pcard"><div class="phead">3: Scale</div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div><div class="prow"><i class="a"></i><i></i></div></div>
+  </div>
+
+  <div class="card" id="formCard">
+    <div class="progress"><i id="bar"></i></div>
+
+    <section class="step active" data-step="1">
+      <p class="q">What’s your <b>name?</b></p>
+      <div class="fields">
+        <input id="firstName" type="text" placeholder="FIRST NAME" autocomplete="given-name">
+        <input id="lastName" type="text" placeholder="LAST NAME" autocomplete="family-name">
+      </div>
+      <button class="btn" data-next>Let’s Start</button>
+      <p class="errmsg" id="err1">Please enter your first and last name.</p>
+    </section>
+
+    <section class="step" data-step="2">
+      <p class="q">What’s your <b>work email?</b></p>
+      <div class="fields">
+        <input id="email" type="email" placeholder="YOU@COMPANY.COM" autocomplete="email">
+      </div>
+      <button class="btn" data-next>Continue</button>
+      <button class="back" data-back>← Back</button>
+      <p class="errmsg" id="err2">Please enter a valid email address.</p>
+    </section>
+
+    <section class="step" data-step="3">
+      <p class="q">What’s your <b>current position?</b></p>
+      <div class="opts" id="positionOpts">
+        <button class="opt" data-pos="Founder / CEO">Founder / CEO</button>
+        <button class="opt" data-pos="Executive / Leadership">Executive / Leadership</button>
+        <button class="opt" data-pos="Manager / Team Lead">Manager / Team Lead</button>
+        <button class="opt" data-pos="Individual Contributor">Individual Contributor</button>
+        <button class="opt" data-pos="Other">Other</button>
+      </div>
+      <button class="back" data-back>← Back</button>
+    </section>
+
+    <section class="step" data-step="4">
+      <p class="q">Last one — <b>what does your work look like?</b></p>
+      <div class="fields">
+        <textarea id="jobDescription" placeholder="Describe your day-to-day in a sentence or two. Example: “I run a 12-person marketing agency and spend most of my time on client proposals and reporting.”"></textarea>
+      </div>
+      <button class="btn" id="submitBtn">Get My AI Roadmap</button>
+      <button class="back" data-back>← Back</button>
+      <p class="errmsg" id="err4">Please tell us a little about your work.</p>
+      <p class="errmsg" id="errSubmit">Something went wrong saving your answers. Please check your connection and tap the button again.</p>
+    </section>
+
+    <section class="step" data-step="5" id="resultStep">
+      <p class="result-title" id="resultTitle">Your AI Roadmap is ready.</p>
+      <p class="result-sub" id="resultSub"></p>
+      <div class="stages" id="stages"></div>
+      <div class="cta">
+        <p><b>Want this roadmap put into action?</b><br>Book a free call with Ruben to walk through it together.</p>
+        <a class="btn" id="bookBtn" href="#" target="_blank" rel="noopener">Book a Call with Ruben</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="bullets">
+    <div>Get Your Roadmap in Less than 30 Seconds</div>
+    <div>Free — No Credit Card Required</div>
+  </div>
+
+  <p class="legal">By providing your information you consent to GPC contacting you by email about your AI roadmap and related services. We never sell your personal information.</p>
+</main>
+
+<footer>GPC · New York</footer>
+
+<script>
+// ====== CONFIG ======
+// Placeholder — Ruben will provide the real booking link later. Swap this one line.
+var BOOKING_URL = "#";
+
+var SUPABASE_URL = "https://cyfxswmcjijmqwefconm.supabase.co";
+// Publishable key: safe to expose in the browser; the database only allows inserts.
+var SUPABASE_KEY = "sb_publishable_BsoSkJbaqyvPU7cjDDYnfw_JYeiPGJc";
+// ====================
+
+var ROADMAPS = {
+  "Founder / CEO": [
+    ["Stage 1: Learn", ["Map where your team’s hours actually go each week", "Pick the 3 highest-cost workflows to target with AI", "Set a simple AI policy so the team can experiment safely"]],
+    ["Stage 2: Integrate", ["Deploy AI assistants on your top workflows (proposals, reporting, ops)", "Train each department lead on one concrete AI use case", "Track hours saved per week — keep what works, cut what doesn’t"]],
+    ["Stage 3: Scale", ["Turn the wins into company-wide playbooks", "Automate handoffs between tools so work flows without you", "Make AI capability part of hiring and quarterly planning"]]
+  ],
+  "Executive / Leadership": [
+    ["Stage 1: Learn", ["Audit your department’s recurring reports, decks and reviews", "Identify decisions that wait on slow manual data-gathering", "Run a 2-week AI pilot on one visible, low-risk process"]],
+    ["Stage 2: Integrate", ["Standardize AI-assisted drafting for reports and communications", "Give your managers a shared prompt library for their teams", "Set measurable targets: cycle time down, output quality up"]],
+    ["Stage 3: Scale", ["Roll the pilot playbook across the whole department", "Connect AI outputs into your existing dashboards and tools", "Report AI-driven gains to the exec team quarterly"]]
+  ],
+  "Manager / Team Lead": [
+    ["Stage 1: Learn", ["List your team’s repetitive weekly tasks (status updates, summaries, QA)", "Choose one task everyone will do with AI for two weeks", "Collect what worked and what felt off — no judgment"]],
+    ["Stage 2: Integrate", ["Build team templates: meeting notes, briefs, and updates drafted by AI", "Pair your strongest AI user with the most hesitant one", "Free the saved hours for the work only humans can do"]],
+    ["Stage 3: Scale", ["Document your team’s AI playbook so new hires ramp in days", "Automate the reporting your manager asks for", "Share your results — become the team other teams copy"]]
+  ],
+  "Individual Contributor": [
+    ["Stage 1: Learn", ["Track your week: find the 5 hours that feel like copy-paste work", "Learn to write clear prompts for your exact tasks", "Use AI as a first-draft machine — you stay the editor"]],
+    ["Stage 2: Integrate", ["Build personal templates for your most common deliverables", "Use AI to prep for meetings in minutes, not hours", "Ship faster and volunteer for higher-visibility work"]],
+    ["Stage 3: Scale", ["Automate your recurring tasks end to end", "Become the go-to AI person on your team", "Turn that reputation into your next promotion conversation"]]
+  ],
+  "Other": [
+    ["Stage 1: Learn", ["Write down your 3 most time-consuming weekly tasks", "Try AI on the easiest one — measure the time saved", "Keep a running list of what AI does well for you"]],
+    ["Stage 2: Integrate", ["Make AI part of your default workflow, not a side experiment", "Create reusable prompts for your recurring work", "Reinvest the saved time into your most valuable work"]],
+    ["Stage 3: Scale", ["Automate the repetitive parts of your role end to end", "Teach one other person what you’ve learned", "Review monthly: what else can AI take off your plate?"]]
+  ]
+};
+
+var state = { step: 1, position: "" };
+var steps = document.querySelectorAll(".step");
+var bar = document.getElementById("bar");
+
+function show(n){
+  state.step = n;
+  steps.forEach(function(s){ s.classList.toggle("active", +s.dataset.step === n); });
+  bar.style.width = ((n - 1) / 4 * 100) + "%";
+  document.querySelectorAll(".errmsg").forEach(function(e){ e.classList.remove("show"); });
+  window.scrollTo({ top: document.getElementById("formCard").offsetTop - 20, behavior: "smooth" });
+}
+
+function val(id){ return document.getElementById(id).value.trim(); }
+
+document.querySelectorAll("[data-back]").forEach(function(b){
+  b.addEventListener("click", function(){ show(state.step - 1); });
+});
+
+// Step 1 → 2
+document.querySelector('[data-step="1"] [data-next]').addEventListener("click", function(){
+  if (!val("firstName") || !val("lastName")) { document.getElementById("err1").classList.add("show"); return; }
+  show(2);
+});
+
+// Step 2 → 3
+document.querySelector('[data-step="2"] [data-next]').addEventListener("click", function(){
+  var email = val("email");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { document.getElementById("err2").classList.add("show"); return; }
+  show(3);
+});
+
+// Step 3 → 4
+document.querySelectorAll("#positionOpts .opt").forEach(function(o){
+  o.addEventListener("click", function(){ state.position = o.dataset.pos; show(4); });
+});
+
+// Step 4: save + show result
+document.getElementById("submitBtn").addEventListener("click", function(){
+  var desc = val("jobDescription");
+  if (!desc) { document.getElementById("err4").classList.add("show"); return; }
+  var btn = this;
+  btn.disabled = true; btn.textContent = "Building your roadmap…";
+  document.getElementById("errSubmit").classList.remove("show");
+
+  fetch(SUPABASE_URL + "/rest/v1/gpc_roadmap_leads", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY,
+      "Prefer": "return=minimal"
+    },
+    body: JSON.stringify({
+      first_name: val("firstName"),
+      last_name: val("lastName"),
+      email: val("email"),
+      job_position: state.position,
+      job_description: desc
+    })
+  }).then(function(res){
+    if (!res.ok) throw new Error("insert failed: " + res.status);
+    renderResult();
+    show(5);
+    bar.style.width = "100%";
+  }).catch(function(){
+    document.getElementById("errSubmit").classList.add("show");
+  }).finally(function(){
+    btn.disabled = false; btn.textContent = "Get My AI Roadmap";
+  });
+});
+
+function renderResult(){
+  document.getElementById("resultTitle").textContent = val("firstName") + ", your AI Roadmap is ready.";
+  document.getElementById("resultSub").textContent = "Built for a " + state.position + " — here’s your path, stage by stage.";
+  var stages = ROADMAPS[state.position] || ROADMAPS["Other"];
+  document.getElementById("stages").innerHTML = stages.map(function(s){
+    return "<div class='stage'><h3>" + s[0] + "</h3><ul>" +
+      s[1].map(function(li){ return "<li>" + li + "</li>"; }).join("") +
+      "</ul></div>";
+  }).join("");
+  document.getElementById("bookBtn").href = BOOKING_URL;
+}
+</script>
+</body>
+</html>
