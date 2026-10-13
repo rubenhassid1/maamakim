@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+/* Brand fonts: drop the files into assets/ with these names and re-render. */
+@font-face{font-family:'FS Kim';src:url(assets/FSKim.woff2) format('woff2'),url(assets/FSKim.otf) format('opentype');font-display:block}
+@font-face{font-family:'GT America';src:url(assets/GTAmerica.woff2) format('woff2'),url(assets/GTAmerica.otf) format('opentype');font-display:block}
+:root{--cream:#FAF5EE;--ink:#232424;--red:#F94E2A;--yellow:#FEEC97;
+  --head:'FS Kim','Inter Display',serif;--text:'GT America','Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--cream)}
+#stage{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--cream);color:var(--ink)}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:180px 120px;opacity:0}
+.logo{height:84px;display:flex;align-items:center}
+.logo img{height:100%}
+.logo .wm{font-family:var(--head);font-weight:700;font-size:84px;letter-spacing:-.04em;line-height:1}
+.logo .wm i{font-style:normal;color:var(--red)}
+h1{font-family:var(--head);font-weight:700;letter-spacing:-.03em;line-height:1.02}
+.lbl{font-family:var(--text);font-weight:500;font-size:52px;letter-spacing:.01em}
+.w{display:inline-block;will-change:transform,opacity}
+
+/* Scene 1 – thumbnail */
+#s1{justify-content:space-between}
+#s1 h1{font-size:128px}
+#s1 .hl{position:relative;color:var(--ink);z-index:0}
+#s1 .hl::after{content:'';position:absolute;left:-6px;right:-6px;bottom:8px;height:42px;background:var(--yellow);z-index:-1;transform-origin:left;transform:scaleX(var(--u,1))}
+#s1 .bar{width:140px;height:14px;background:var(--red)}
+
+/* Scene 2 – what GPC does */
+#s2 .lbl{color:var(--red);margin-bottom:40px}
+#s2 h1{font-size:168px;line-height:1.0}
+#s2 h1 .w:nth-child(4) {color:var(--red)}
+
+/* Scene 3 – hero number */
+#s3{background:var(--ink);color:var(--cream);align-items:flex-start}
+#s3 .lbl{color:var(--yellow)}
+#s3 .num{font-family:var(--head);font-weight:700;font-size:236px;letter-spacing:-.05em;line-height:.9;
+  font-variant-numeric:tabular-nums;color:var(--cream);margin:40px 0 10px}
+#s3 .unit{font-family:var(--head);font-weight:700;font-size:120px;letter-spacing:-.03em;color:var(--red);line-height:1}
+
+/* Scene 4 – CTA */
+#s4{background:var(--red);color:var(--cream);justify-content:space-between}
+#s4 h1{font-size:112px}
+#s4 .url{display:inline-block;margin-top:44px;font-family:var(--text);font-weight:600;font-size:70px;
+  background:var(--yellow);color:var(--ink);padding:18px 34px;border-radius:14px}
+#s4 .logo .wm, #s4 .logo .wm i{color:var(--cream)}
+</style></head>
+<body><div id="stage">
+
+<section class="scene" id="s1">
+  <div class="logo" data-logo></div>
+  <h1><span class="w">Your</span> <span class="w">AI</span> <span class="w">pilot</span><br>
+      <span class="w">stayed</span> <span class="w">a</span> <span class="w hl">pilot.</span></h1>
+  <div class="bar"></div>
+</section>
+
+<section class="scene" id="s2">
+  <div class="lbl"><span class="w">We're GPC.</span></div>
+  <h1><span class="w">Train.</span><br><span class="w">Adopt.</span><br><span class="w">Deploy.</span><br><span class="w">Maintain.</span></h1>
+</section>
+
+<section class="scene" id="s3">
+  <div class="lbl"><span class="w">Athlete's Thread</span></div>
+  <div class="num" id="count">0</div>
+  <div class="unit"><span class="w">hours saved</span></div>
+</section>
+
+<section class="scene" id="s4">
+  <div class="logo" data-logo></div>
+  <div>
+    <h1><span class="w">Book a</span><br><span class="w">30-minute call:</span></h1>
+    <div class="url w">gpc.consulting</div>
+  </div>
+  <div></div>
+</section>
+
+</div>
+<script>
+// Logo: uses assets/gpc-logo.svg if present (set by the renderer), else a text placeholder.
+window.setLogo = (hasFile) => document.querySelectorAll('[data-logo]').forEach(el => {
+  el.innerHTML = hasFile ? '<img src="assets/gpc-logo.svg" alt="gpc">' : '<span class="wm">gpc<i>.</i></span>';
+});
+setLogo(false);
+
+const DUR = 20, clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const eOut = x => 1-Math.pow(1-clamp(x),3);
+const eIn  = x => Math.pow(clamp(x),3);
+const prog = (t,a,b) => clamp((t-a)/(b-a));
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+// Scene windows [in, out] in seconds. CTA fully in by 17.0, holds to 20.0.
+const S = {s1:[0,4.6], s2:[4.6,9.0], s3:[9.0,16.3], s4:[16.3,20.01]};
+
+function sceneAlpha(t,[a,b],first){
+  const i = first ? 1 : eOut(prog(t,a,a+.35));
+  const o = b>=DUR ? 1 : 1-eIn(prog(t,b-.3,b));
+  return (t<a||t>=b)?0:Math.min(i,o);
+}
+function words(sel,t,start,step,dist=60){
+  $$(sel).forEach((w,i)=>{const p=eOut(prog(t,start+i*step,start+i*step+.45));
+    w.style.opacity=p; w.style.transform=`translateY(${(1-p)*dist}px)`;});
+}
+window.render = function(t){
+  for (const k in S){ $('#'+k).style.opacity = sceneAlpha(t,S[k],k==='s1'); }
+  // S1: complete on frame 0 (thumbnail). Subtle push-in + highlight re-sweep.
+  $('#s1 h1').style.transform = `scale(${1+0.04*eOut(prog(t,0,4.6))})`;
+  $('#s1 h1').style.transformOrigin = 'left center';
+  $('#s1 .hl').style.setProperty('--u', t<0.6 ? 1 : eOut(prog(t,0.6,1.4)) );
+  // S2
+  words('#s2 .lbl .w',t,4.75,0);
+  words('#s2 h1 .w',t,5.2,.55,80);
+  // S3: count up 0 -> 10,933, then hold
+  words('#s3 .lbl .w',t,9.15,0);
+  const c = eOut(prog(t,9.5,13.0));
+  $('#count').textContent = Math.round(10933*c).toLocaleString('en-US');
+  $('#count').style.transform = `scale(${t>13.0 ? 1+0.05*Math.sin(Math.PI*prog(t,13.0,13.5)) : 1})`;
+  $('#count').style.transformOrigin='left center';
+  words('#s3 .unit .w',t,12.7,0);
+  // S4
+  words('#s4 h1 .w',t,16.4,.2);
+  words('#s4 .url',t,16.6,0);
+};
+render(0);
+</script></body></html>
